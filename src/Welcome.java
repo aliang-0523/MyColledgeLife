@@ -127,6 +127,7 @@ class Zjuter{
 	protected int friendcount=0;
 	protected int roomnum;
 	public Zjuter(double g,double s) {
+		
 		this.grade=g;
 		this.score=s;
 	}
