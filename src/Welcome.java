@@ -158,6 +158,7 @@ class CS extends Zjuter{
 		Class class1=new Class(subn,cre);
 		this.classes.add(class1);
 		this.classpicked++;
+		
 	}
 	//锟轿加匡拷锟斤拷
 	public void takeExam(double s,String classname) {
