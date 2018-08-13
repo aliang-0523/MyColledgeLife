@@ -143,7 +143,7 @@ class Solution {
         return substr;
     }
 }
-public class ImageViewerFrame{
+public class LeetCode{
 	public static void main(String[] args) {
 		String s= "pwk";
 		Solution solution=new Solution();
