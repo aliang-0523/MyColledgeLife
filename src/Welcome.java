@@ -1,31 +1,38 @@
+import java.lang.reflect.AccessibleObject;
+import java.lang.reflect.Array;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.function.IntPredicate;
+//import java.util.Arrays;
+//import java.util.Calendar;
+//import java.util.GregorianCalendar;
+//import java.util.HashMap;
+//import java.util.function.IntPredicate;
+//
+//import javax.swing.colorchooser.ColorChooserComponentFactory;
+//
+//import org.omg.CORBA.PRIVATE_MEMBER;
+//
+//import java.awt.EventQueue;
+//import java.awt.event.*;
+//import java.io.File;
+//import java.math.BigInteger;
+//import java.util.Scanner;
+//
+//import javax.swing.*;
+import java.util.Date;
 
-import javax.swing.colorchooser.ColorChooserComponentFactory;
-
-import org.omg.CORBA.PRIVATE_MEMBER;
-
-import java.awt.EventQueue;
-import java.awt.event.*;
-import java.io.File;
-import java.math.BigInteger;
-import java.util.Scanner;
-
-import javax.swing.*;
-
-class Class{
+class Class1{
 	protected double score;
 	protected String subjectname;
 	protected double credit;
 	protected boolean passed;
-	public Class(String subn,double cre) {
+	public Class1(String subn,double cre) {
 		this.subjectname=subn;
 		this.credit=cre;
 	}
-	public Class(Class c) {
+	public Class1(Class1 c) {
 		this.subjectname=c.subjectname;
 		this.credit=c.credit;
 	}
@@ -58,7 +65,6 @@ class Zjuter{
 	protected int friendcount=0;
 	protected int roomnum;
 	public Zjuter(double g,double s) {
-		
 		this.grade=g;
 		this.score=s;
 	}
@@ -72,17 +78,18 @@ class Zjuter{
 	public void pickRoom(int room) {
 		this.roomnum=room;
 	}
+	
 }
 class CS extends Zjuter{
 	private String skill;
 	public int classpicked=0;
-	protected ArrayList<Class> classes=new ArrayList<>();
+	protected ArrayList<Class1> classes=new ArrayList<>();
 	public CS(double g, double s,Friend friend[],String s1) {
 		super(g,s);
 		this.skill=s1;
 	}
 	public void pickClass(String subn,double cre) {
-		Class class1=new Class(subn,cre);
+		Class1 class1=new Class1(subn,cre);
 		this.classes.add(class1);
 		this.classpicked++;
 	}
@@ -100,13 +107,30 @@ class CS extends Zjuter{
 		}
 	}
 }
+enum Size{
+	SMALL,MEDIUM,LARGE
+}
 public class Welcome{
+	public static Object goodCopyof(Object a,int newLength) {
+		Class<? extends Object> class1=a.getClass();
+		if(!class1.isArray())return null;
+		Class<?> componentType=class1.getComponentType();
+		int length=Array.getLength(a);
+		Object newArray=Array.newInstance(componentType, newLength);
+		System.arraycopy(a, 0, newArray, 0, Math.min(length, newLength));
+		return newArray;
+	}
 	public static void main(String []args) {
+		Size size[]=Size.values();
+		System.out.println(size[0]);
 		int countdown=1400;
 		while(countdown!=0) {
 			if(countdown==1400) {
 				CS sj=new CS(633, 0, null,"programmer");
 				sj.pickRoom(606);
+				Class<? extends CS> class1=sj.getClass();
+				System.out.println(class1.getDeclaredMethods()[0]);
+				System.out.println(Modifier.isPublic(class1.getModifiers()));
 				sj.pickClass("计算机组成原理", 4);
 				sj.pickClass("C++", 3);
 				sj.pickClass("操作系统", 3);
